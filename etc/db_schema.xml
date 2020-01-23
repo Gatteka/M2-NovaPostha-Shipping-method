@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="custom_novaposhta_cities" resource="default" engine="innodb" comment="custom_novaposhta_cities">
+        <column xsi:type="int" name="city_id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="city_name" nullable="false" length="125" comment="city_name"/>
+        <column xsi:type="varchar" name="city_type" nullable="false" length="25" comment="city_type"/>
+        <column xsi:type="varchar" name="ref" nullable="false" length="25" comment="ref"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="city_id"/>
+        </constraint>
+        <index referenceId="NOVAPOSHTA_CITY_ID" indexType="btree">
+            <column name="city_id"/>
+        </index>
+    </table>
+    <table name="custom_novaposhta_warehouses" resource="default" engine="innodb" comment="custom_novaposhta_warehouses">
+        <column xsi:type="int" name="warehouse_id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="warehouse_number" nullable="false" length="25" comment="city_name"/>
+        <column xsi:type="varchar" name="warehouse_desc" nullable="false" length="525" comment="city_type"/>
+        <column xsi:type="varchar" name="city_id" nullable="false" length="25" comment="city_id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="warehouse_id"/>
+        </constraint>
+    </table>
+    <table name="novaposhta_order_destination_address" resource="default" engine="innodb" comment="novaposhta_order_destination_address">
+        <column xsi:type="int" name="order_id" padding="6" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="warehouse_id" nullable="false" length="25" comment="city_name"/>
+        <column xsi:type="varchar" name="city_id" nullable="false" length="25" comment="city_id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="order_id"/>
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,27 @@
+
+<?php /* @var $block \Learn\NovaPoshta\Block\System\Config\UpdateWarehousesButton */ ?>
+<script>
+    function updateWarehousesData() {
+        new Ajax.Request('<?= $block->getAjaxUrl() ?>', {
+            onComplete: function(response) {
+                if (200 === response.status) {
+
+                    // $('.).html(data)
+                    //     .trigger('contentUpdated');
+
+                  return  alert('Data updated');
+                }
+                return alert('Data update failed')
+                },
+            parameters: '',
+            loaderArea: false,
+            asynchronous: true,
+        });
+    }
+</script>
+<?php echo $block->getButtonHtml() ?>
+<span class="collect-indicator" id="collect_span">
+    <img class="processing" hidden="hidden" alt="Collecting" style="margin:0 5px" src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="collected" hidden="hidden" alt="Collected" style="margin:-3px 5px" src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <span id="collect_message_span"></span>
+</span>

@@ -1,0 +1,16 @@
+<?php /* @var $block \Learn\NovaPoshta\Block\System\Config\CalculateDeliveryCostButton */ ?>
+<div data-bind="scope:'calculateDeliveryCost'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<?php //echo $block->getButtonHtml() ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "calculateDeliveryCost": {
+                   "ajaxUrl": "<?= /* @NoEscape */ $block->escapeJs($block->escapeUrl($block->getUrl())) ?>"
+            }
+        }
+    }
+</script>

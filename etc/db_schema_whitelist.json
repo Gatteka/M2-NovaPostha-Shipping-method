@@ -1,0 +1,36 @@
+{
+    "custom_novaposhta_cities": {
+        "column": {
+            "city_id": true,
+            "city_name": true,
+            "city_type": true
+        },
+        "index": {
+            "CUSTOM_NOVAPOSHTA_CITIES_CITY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "custom_novaposhta_warehouses": {
+        "column": {
+            "warehouse_id": true,
+            "warehouse_number": true,
+            "warehouse_desc": true,
+            "city_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "novaposhta_order_destination_address": {
+        "column": {
+            "order_id": true,
+            "warehouse_id": true,
+            "city_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

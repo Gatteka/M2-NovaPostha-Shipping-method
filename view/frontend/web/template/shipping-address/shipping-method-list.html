@@ -1,0 +1,44 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div id="checkout-shipping-method-load">
+    <table class="table-checkout-shipping-method">
+        <thead>
+        <tr class="row">
+            <th class="col col-method" translate="'Select Method'"></th>
+            <th class="col col-price" translate="'Price'"></th>
+            <th class="col col-method" translate="'Method Title'"></th>
+            <th class="col col-carrier" translate="'Carrier Title'"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- ko foreach: { data: rates(), as: 'method'} -->
+        <!--ko template: { name: element.shippingMethodItemTemplate} --><!-- /ko -->
+        <!-- /ko -->
+        </tbody>
+    </table>
+    <!-- ko if: npCarrier  -->
+    <!-- ko if: cities && warehouses  -->
+    <div><h3 data-bind="i18n: 'Select shipping destination city'"></h3></div>
+
+    <select data-bind="options: cities,
+    optionsText: 'city_name',
+    optionsValue: 'city_id',
+     selectedOptions: '',
+     event:{ change: changeSelectedCity} "
+      size="10" multiple="false"></select>
+    <!-- ko if: citySelected  -->
+<span data-bind="text: self.warehousesCount()"></span>
+    <select data-bind="options: self.warehouses()[self.citySelected()],
+    optionsText: 'warehouse_desc',
+    optionsValue: 'warehouse_id',
+     selectedOptions: '',
+      event:{ change: changeSelectedWarehouse} "
+     size= "8" multiple="true"></select>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- /ko -->
+</div>
