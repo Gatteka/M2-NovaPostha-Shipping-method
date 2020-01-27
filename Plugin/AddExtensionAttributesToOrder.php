@@ -88,20 +88,5 @@ class AddExtensionAttributesToOrder
 
         return $searchResult;
     }
-
-    /**
-//     * @param  OrderRepositoryInterface $subject
-//     * @param  OrderInterface $entity
-//     * @return OrderInterface
-//     */
-//    public function afterSave(OrderRepositoryInterface $subject, OrderInterface $entity)
-//    {
-//        $extensionAttributes = $entity->getExtensionAttributes();
-//        //$ourCustomData = $extensionAttributes->getOurCustomData();
-//
-//        //$this->repository->saveDestAddress($ourCustomData);
-//
-//        return $entity;
-//    }
 }
 

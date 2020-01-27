@@ -3,14 +3,10 @@
     <!-- ko template: getTemplate() --><!-- /ko -->
 </div>
 
-<?php //echo $block->getButtonHtml() ?>
+<?php echo $block->getButtonHtml() ?>
 
-<script type="text/x-magento-init">
-    {
-        "*": {
-            "calculateDeliveryCost": {
-                   "ajaxUrl": "<?= /* @NoEscape */ $block->escapeJs($block->escapeUrl($block->getUrl())) ?>"
-            }
-        }
-    }
+<script>
+    require(['calculateDeliveryCost'], function () {
+            window.calculateDeliveryCost.init();
+    });
 </script>

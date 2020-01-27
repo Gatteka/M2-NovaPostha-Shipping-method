@@ -24,6 +24,8 @@ class CalculateDeliveryCost extends Action
 
     private $serializer;
 
+    private $context;
+
     /**
      * CalculateDeliveryCost constructor.
      * @param Curl $curl
@@ -39,6 +41,7 @@ class CalculateDeliveryCost extends Action
     ) {
         $this->curl = $curl;
         $this->serializer = $serializer;
+        $this->context = $context;
         $this->scopeConfig = $scopeConfig;
         parent::__construct($context);
     }
@@ -89,17 +92,17 @@ class CalculateDeliveryCost extends Action
     public function getDeliveryCostBySenderCity()
     {
         $this->getRefBySenderCityName();
-//        $client = $this->curl;
-//        $client->addHeader('content-type', 'application/json');
-//        $client->post(
-//            'https://api.novaposhta.ua/v2.0/json/',
-//            '{
-//             "modelName": "AddressGeneral",
-//             "calledMethod": "getCities",
-//             "methodProperties": {},
-//              "apiKey": "' . $this->scopeConfig->getValue(self::PATH_TO_API_KEY) . '"
-//             }'
-//        );
-//        return $this->serializer->unserialize($client->getBody());
+        $client = $this->curl;
+        $client->addHeader('content-type', 'application/json');
+        $client->post(
+            'https://api.novaposhta.ua/v2.0/json/',
+            '{
+             "modelName": "AddressGeneral",
+             "calledMethod": "getCities",
+             "methodProperties": {},
+              "apiKey": "' . $this->scopeConfig->getValue(self::PATH_TO_API_KEY) . '"
+             }'
+        );
+        return $this->serializer->unserialize($client->getBody());
     }
 }

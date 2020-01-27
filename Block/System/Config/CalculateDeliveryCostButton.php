@@ -57,9 +57,10 @@ class CalculateDeliveryCostButton extends Field
             [
                 'id' => 'calculate_delivery_button_1',
                 'label' => __('Calculate Delivery Cost'),
-                'onclick' => 'calculate()',
+                'onclick' => 'calculateDeliveryCost.calculate( "' . $this->getAjaxUrl() . '")',
             ]
         );
+
         return $button->toHtml();
     }
 }

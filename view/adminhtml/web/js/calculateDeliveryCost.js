@@ -1,41 +1,47 @@
 define([
     'jquery',
     'uiComponent',
+    'Magento_Ui/js/modal/confirm',
     'ko',
 ], function (
     $,
     Component,
+    confirmation,
     ko
 ) {
-    return Component.extend({
-        defaults: {
-            template: 'Learn_NovaPoshta/button',
+    window.calculateDeliveryCost = {
+        init: function () {
+            self = this;
+
         },
-        initialize: function () {
-            this._super();
-            return this;
+        calculate: function (url) {
+            console.log(url);
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'get',
+                global: false,
+                contentType: 'application/json'
+            }).done(function () {
+                self.initConfirmPopup('Done','shipping cost calculated.');
+            }).fail(function () {
+                self.initConfirmPopup('Error','shipping calculation failed.');
+            });
         },
-        calculate: function () {
-            console.log('test');
-            // $.ajax({
-            //     url: "",
-            //     dataType: 'json',
-            //     type: 'get',
-            //     global: false,
-            //     contentType: 'application/json'
-            // }).done(function () {
-            //     console.log('done');
-            //    // customerData.reload('messages');
-            // }).fail(function (jqXhr) {
-            //     console.log('error');
-            //     // let errorResponse = $.parseJSON(jqXhr.responseText);
-            //     // customerData.set('messages', {
-            //     //     messages: [{
-            //     //         type: 'error',
-            //     //         text: errorResponse.message
-            //     //     }]
-            //     // });
-            // });
-        },
-    });
+        initConfirmPopup: function (title,result) {
+            confirmation({
+                title: $.mage.__(title),
+                content: $.mage.__(result),
+                actions: {},
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: 'action-secondary action-dismiss',
+                    click: function (event) {
+                        this.closeModal(event);
+                    }
+                }
+                ]
+            });
+        }
+    }
 });
